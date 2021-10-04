@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MapExample.swift
 //  MapKitExploration
 //
 //  Created by Joshua Curry on 10/4/21.
@@ -43,15 +43,20 @@ struct MapExample: View {
                 userTrackingMode: $userTrackingMode,
                 annotationItems: cities
             ) { city in
+                
+                // Custom annotation symbol
                 MapAnnotation(
-                    coordinate: city.coordinate,
-                    anchorPoint: CGPoint(x: 0.5, y: 0.5)
+                    coordinate: city.coordinate
                 ) {
                     Circle()
                         .stroke(Color.green)
                         .frame(width: 44, height: 44)
-                        //.background(Color.green)
+                    Text("A city")
                 }
+                
+                //Apple annotation symbols:
+                //MapPin(coordinate: city.coordinate, tint: .blue)
+                //MapMarker(coordinate: city.coordinate, tint: .red)
             }
                 .ignoresSafeArea()
             Button("zoom") {
