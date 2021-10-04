@@ -9,6 +9,8 @@ import SwiftUI
 import MapKit
 
 struct MapExample: View {
+    @ObservedObject private var locationManager = LocationViewModel()
+    @State private var userTrackingMode: MapUserTrackingMode = .follow
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
             latitude: 25.7617,
@@ -22,7 +24,12 @@ struct MapExample: View {
 
     var body: some View {
         VStack {
-            Map(coordinateRegion: $region)
+            Map(
+                coordinateRegion: $region,
+                interactionModes: MapInteractionModes.all,
+                showsUserLocation: true,
+                userTrackingMode: $userTrackingMode
+            )
                 .ignoresSafeArea()
             Button("zoom") {
                 withAnimation {
